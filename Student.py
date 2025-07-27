@@ -1,1 +1,26 @@
-class Student:    def __init__(self, id,studentNumber,Name,Surname,Birthday,Gender,categoryid,Classid):        self.id = id if id is not None else 0        self.studentNumber = studentNumber         self.Name = Name        self.Surname = Surname        self.Birthday = Birthday        self.Gender = Gender        self.categoryid = categoryid        self.Classid = Classid            @staticmethod    def CreateStudent(obj):        if obj is None:            return None        if isinstance(obj, tuple):            if None in obj:                raise Exception("nıone var")            return Student(obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], obj[7])        else:            students = []        for i in obj:            if i is None:                raise Exception("CreateStudent: liste içinde None var")            students.append(Student(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7]))        return students
+class Student:
+    def __init__(self, id,studentNumber,Name,Surname,Birthday,Gender,categoryid,Classid):
+        self.id = id if id is not None else 0
+        self.studentNumber = studentNumber 
+        self.Name = Name
+        self.Surname = Surname
+        self.Birthday = Birthday
+        self.Gender = Gender
+        self.categoryid = categoryid
+        self.Classid = Classid
+        
+    @staticmethod
+    def CreateStudent(obj):
+        if obj is None:
+            return None
+        if isinstance(obj, tuple):
+            if None in obj:
+                raise Exception("nıone var")
+            return Student(obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], obj[7])
+        else:
+            students = []
+        for i in obj:
+            if i is None:
+                raise Exception("CreateStudent: liste içinde None var")
+            students.append(Student(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7]))
+        return students
