@@ -1,0 +1,1 @@
+class classLesson:    def __init__(self,Classid,Lessonid,Teacherid):        if id is None:            self.id = 0        else:            self.id = 0        self.Classid=Classid        self.Lessonid=Lessonid        self.Teacherid=Teacherid    
