@@ -1,1 +1,8 @@
-class lesson:    def __init__(self, id,Name,Teacherid):        if id is None:            self.id = 0        else:            self.id = 0        self.Name = Name        self.Teacherid=Teacherid
+class lesson:
+    def __init__(self, id,Name,Teacherid):
+        if id is None:
+            self.id = 0
+        else:
+            self.id = 0
+        self.Name = Name
+        self.Teacherid=Teacherid
