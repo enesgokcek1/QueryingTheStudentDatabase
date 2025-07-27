@@ -1,1 +1,94 @@
-from dbmanager import DbManagerimport datetime class App:    def __init__(self):        self.db = DbManager()            def initApp(self):        msg = "****\n1-öğrenci listesi \n2-öğrenci ekle\n3-öğrenci güncelle\n4-öğrenci sil"        while True:            print(msg)            islem = input("seçim: ")            if islem == "1":                self.displayStudents()            elif islem == "2":                self.addStudent()            elif islem == "3":                self.editStudent()            elif islem == "E" or islem == "Ç" :                break            else:                 print("yanlıs secim")                                    def editStudent(self):        self.displayStudents()        studentid = int(input("öğrenci id: "))                student = self.db.getstudentsById(studentid)                student[0].name = input("name") or student[0].name        student[0].surname = input("surname") or student[0].surname        student[0].gender = input("cinsiyet (E\K):") or student[0].gender        student[0].classid = input("sınfı:") or student[0].classid                            def addStudent(self):        self.displayClasses()        try:            Classid = int(input("hangi sınıf: "))            categoryid = int(input("kategori id: "))            studentNumber = input("numara: ").strip()            Name = input("ad: ").strip()            Surname = input("soyad: ").strip()            year = int(input("yıl: "))            month = int(input("month: "))            day = int(input("gün: "))            Gender = input("cinsiyet (E/K): ").strip()            if not Name:                print("Ad boş olamaz!")                return            if not studentNumber:                print("Numara boş olamaz!")                return            Birthday = datetime.date(year, month, day)                print(f"Veriler: {studentNumber=}, {Name=}, {Surname=}, {Birthday=}, {Gender=}, {categoryid=}, {Classid=}")                student = Student(None, studentNumber, Name, Surname, Birthday, Gender, categoryid, Classid)            self.db.addStudent(student)            print("Öğrenci başarıyla eklendi.")        except Exception as e:            print("Hata oluştu:", e)    def displayClasses(self):        classes = self.db.getClasses()        for c in classes:            print(f"{c.id}: {c.name}")                def displayStudents(self):        self.displayClasses()        classid = int(input("hangi sınıf: "))                students = self.db.getstudentsByClassId(classid)        print("öğrenci listesi")        for std in students:            print(f"{std.id}-{std.name} {std.surname}")        return classid                                                                                    
+from dbmanager import DbManager
+import datetime 
+
+class App:
+    def __init__(self):
+        self.db = DbManager()
+        
+    def initApp(self):
+        msg = "****\n1-öğrenci listesi \n2-öğrenci ekle\n3-öğrenci güncelle\n4-öğrenci sil"
+        while True:
+            print(msg)
+            islem = input("seçim: ")
+            if islem == "1":
+                self.displayStudents()
+            elif islem == "2":
+                self.addStudent()
+            elif islem == "3":
+                self.editStudent()
+            elif islem == "E" or islem == "Ç" :
+                break
+            else: 
+                print("yanlıs secim")
+                
+                
+    def editStudent(self):
+        self.displayStudents()
+        studentid = int(input("öğrenci id: "))
+        
+        student = self.db.getstudentsById(studentid)
+        
+        student[0].name = input("name") or student[0].name
+        student[0].surname = input("surname") or student[0].surname
+        student[0].gender = input("cinsiyet (E\K):") or student[0].gender
+        student[0].classid = input("sınfı:") or student[0].classid
+        
+                
+    def addStudent(self):
+        self.displayClasses()
+
+        try:
+            Classid = int(input("hangi sınıf: "))
+            categoryid = int(input("kategori id: "))
+            studentNumber = input("numara: ").strip()
+            Name = input("ad: ").strip()
+            Surname = input("soyad: ").strip()
+            year = int(input("yıl: "))
+            month = int(input("month: "))
+            day = int(input("gün: "))
+            Gender = input("cinsiyet (E/K): ").strip()
+
+            if not Name:
+                print("Ad boş olamaz!")
+                return
+            if not studentNumber:
+                print("Numara boş olamaz!")
+                return
+
+            Birthday = datetime.date(year, month, day)
+    
+            print(f"Veriler: {studentNumber=}, {Name=}, {Surname=}, {Birthday=}, {Gender=}, {categoryid=}, {Classid=}")
+    
+            student = Student(None, studentNumber, Name, Surname, Birthday, Gender, categoryid, Classid)
+            self.db.addStudent(student)
+            print("Öğrenci başarıyla eklendi.")
+        except Exception as e:
+            print("Hata oluştu:", e)
+
+    def displayClasses(self):
+        classes = self.db.getClasses()
+        for c in classes:
+            print(f"{c.id}: {c.name}")
+            
+    def displayStudents(self):
+        self.displayClasses()
+        classid = int(input("hangi sınıf: "))
+        
+        students = self.db.getstudentsByClassId(classid)
+        print("öğrenci listesi")
+        for std in students:
+            print(f"{std.id}-{std.name} {std.surname}")
+        return classid
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
